@@ -89,15 +89,6 @@ class _LogMeasurementScreenState extends State<LogMeasurementScreen> {
             ),
             const SizedBox(height: 10),
 
-            // Notes Input Field
-            _buildMeasurementInputField(
-              label: "Notes / Insights",
-              controller: notesController,
-              hintText: "Enter any notes or insights (optional)",
-              isMultiline: true, // Enable multiline for the notes
-            ),
-            const SizedBox(height: 20),
-
             // Save Button
             Consumer(
               builder: (context, ref, child) => ElevatedButton(

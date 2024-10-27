@@ -30,7 +30,7 @@ class HomeScreen extends ConsumerWidget {
           children: [
             // Welcome and App Description Section
             const Text(
-              "Welcome to Body Measurement Tracker!",
+              "Welcome Buddy Neo Matrix!",
               style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
@@ -136,6 +136,10 @@ class HomeScreen extends ConsumerWidget {
         },
         backgroundColor: Colors.teal,
         child: const Icon(Icons.add),
+        shape: RoundedRectangleBorder(
+          borderRadius:
+              BorderRadius.circular(30.0), // Adjust the radius as needed
+        ),
       ),
     );
   }
