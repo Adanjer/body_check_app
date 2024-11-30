@@ -50,7 +50,7 @@ class ProgressSummaryScreen extends ConsumerWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Measurement ${index + 1}",
+                              "Your Measure ${index + 1}",
                               style: const TextStyle(
                                   fontSize: 20, fontWeight: FontWeight.bold),
                             ),

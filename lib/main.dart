@@ -1,8 +1,7 @@
-// main.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../screens/home_screen.dart';
-import '../screens/profile_screen.dart'; // Ensure this line is present and correct
+import '../screens/profile_screen.dart';
 import '../screens/progress_summary_screen.dart';
 
 void main() {
@@ -17,8 +16,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Body Measurement Tracker',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: const HomeScreenWrapper(),
+      theme: ThemeData(primarySwatch: Colors.teal),
+      initialRoute: '/home', // Set the initial route
+      routes: {
+        '/home': (context) => const HomeScreenWrapper(),
+        '/profile': (context) => const ProfileScreen(),
+        '/progress': (context) => const ProgressSummaryScreen(),
+      },
     );
   }
 }
@@ -46,9 +50,6 @@ class _HomeScreenWrapperState extends State<HomeScreenWrapper> {
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-    double screenWidth = MediaQuery.of(context).size.width;
-
     return Scaffold(
       appBar: AppBar(
         title: const Text("BodyCheck"),
@@ -61,58 +62,38 @@ class _HomeScreenWrapperState extends State<HomeScreenWrapper> {
             ),
           ),
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.notifications, color: Colors.white),
-            onPressed: () {
-              // Handle notification button press
-            },
+      ),
+      body: IndexedStack(
+        index: _selectedIndex,
+        children: _screens,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home, size: 28),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person, size: 28),
+            label: 'Profile',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.bar_chart, size: 28),
+            label: 'Progress',
           ),
         ],
-      ),
-      body: Container(
-        padding: EdgeInsets.symmetric(
-          vertical: screenHeight * 0.05,
-          horizontal: screenWidth * 0.1,
+        selectedItemColor: Colors.greenAccent,
+        unselectedItemColor: Colors.grey.shade600,
+        backgroundColor: Colors.white,
+        selectedLabelStyle: const TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 14,
         ),
-        child: IndexedStack(
-          index: _selectedIndex,
-          children: _screens,
-        ),
-      ),
-      bottomNavigationBar: ClipRRect(
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
-        ),
-        child: BottomNavigationBar(
-          currentIndex: _selectedIndex,
-          onTap: _onItemTapped,
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home, size: 28),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person, size: 28),
-              label: 'Profile',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.bar_chart, size: 28),
-              label: 'Progress',
-            ),
-          ],
-          selectedItemColor: Colors.greenAccent,
-          unselectedItemColor: Colors.grey.shade600,
-          backgroundColor: Colors.white,
-          selectedLabelStyle: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 14,
-          ),
-          unselectedLabelStyle: const TextStyle(fontSize: 12),
-          type: BottomNavigationBarType.fixed,
-          elevation: 15,
-        ),
+        unselectedLabelStyle: const TextStyle(fontSize: 12),
+        type: BottomNavigationBarType.fixed,
+        elevation: 15,
       ),
     );
   }

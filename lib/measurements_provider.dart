@@ -28,6 +28,11 @@ class MeasurementsNotifier extends StateNotifier<List<Measurement>> {
       print('Invalid index: $index');
     }
   }
+
+  void clearMeasurements() {
+    state = [];
+    print('All measurements cleared.');
+  }
 }
 
 final measurementsProvider =
