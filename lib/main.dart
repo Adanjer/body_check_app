@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../screens/home_screen.dart';
 import '../screens/profile_screen.dart'; // Ensure this line is present and correct
-import '../screens/log_measurement_screen.dart';
 import '../screens/progress_summary_screen.dart';
 
 void main() {
@@ -36,7 +35,6 @@ class _HomeScreenWrapperState extends State<HomeScreenWrapper> {
   final List<Widget> _screens = [
     const HomeScreen(),
     const ProfileScreen(),
-    const LogMeasurementScreen(),
     const ProgressSummaryScreen(),
   ];
 
@@ -98,10 +96,6 @@ class _HomeScreenWrapperState extends State<HomeScreenWrapper> {
             BottomNavigationBarItem(
               icon: Icon(Icons.person, size: 28),
               label: 'Profile',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings, size: 28),
-              label: 'Log',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.bar_chart, size: 28),

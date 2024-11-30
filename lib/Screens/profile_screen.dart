@@ -27,7 +27,7 @@ class ProfileScreen extends StatelessWidget {
             CircleAvatar(
               radius: 50,
               backgroundImage: AssetImage(
-                  'assets/profile_placeholder.png'), // Placeholder image; replace with user image
+                  'D:\mobile-dev\sds\boddy_log\lib\assets\mypro.jpg'), // Placeholder image; replace with user image
               child: const Align(
                 alignment: Alignment.bottomRight,
                 child: CircleAvatar(
